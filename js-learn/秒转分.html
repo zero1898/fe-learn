@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+        window.onload = function() {
+            var oMiao = document.getElementById('miao');
+            var oBtn = document.getElementById('btn');
+            var oFen = document.getElementById('fen');
+
+            oBtn.onclick = function() {
+                var val = oMiao.value;
+                if (isNaN(val)) {
+                    oFen.innerHTML = "请输入正确的秒数";
+                } else {
+                    oFen.innerHTML = parseInt(val / 60 / 60) + '时' + parseInt(val / 60 % 60) + '分' + val % 60 + '秒';
+                    oFen.style.display = 'inline-block';
+                    oFen.style.background = '#CCC';
+                }
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <div>
+        <input id="miao" type="text">秒
+        <button id="btn" type="button">转换</button>
+    </div>
+    <p id="fen"></p>
+</body>
+
+</html>

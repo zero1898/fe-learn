@@ -1,0 +1,57 @@
+body, ul, li, a {
+    margin: 0;
+    padding: 0;
+}
+ul {
+    list-style: none;
+}
+a {
+    color: #04D;
+    text-decoration: none;
+}
+a:hover {
+    color: #F50;
+    text-decoration: underline;
+}
+body {
+    font-size: 12px;
+}
+.clearfix {
+    zoom: 1;
+}
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+    height: 0;
+}
+.SubCategoryBox {
+    width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 40px;
+    text-align: center;
+}
+.SubCategoryBox ul li {
+    display: block;
+    float: left;
+    width: 200px;
+    line-height: 20px;
+}
+.showmore {
+    padding-top: 10px;
+}
+.showmore a {
+    display: block;
+    width: 120px;
+    margin: 0 auto;
+    line-height: 24px;
+    border: 1px solid #AAA;
+}
+.showmore a span {
+    padding-left: 15px;
+    background: url(../img/down.gif) no-repeat 0 0;
+}
+.promoted a {
+    color: #F50;
+}
