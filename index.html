@@ -3,14 +3,55 @@
 
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>tagcloud</title>
+    <script src="./tagCloud/tagCloud.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+
+            var taglist = [{
+                "test": '鼠标提示框',
+                "href": 'js-learn/鼠标提示框.html'
+            }, {
+                "test": '单选全选',
+                "href": 'js-learn/单选全选.html'
+            }, {
+                "test": '循环变色',
+                "href": 'js-learn/循环变色.html'
+            }, {
+                "test": '秒转分',
+                "href": 'js-learn/秒转分.html'
+            },{
+                "test": '简易年历',
+                "href": 'js-learn/nianli/简易年历.html'
+            },{
+                "test": '网页换肤',
+                "href": 'js-learn/wangyehuanfu/网页换肤.html'
+            },{
+                "test": '选项卡',
+                "href": 'js-learn/选项卡.html'
+            },{
+                "test": '隔行变色',
+                "href": 'js-learn/隔行变色.html'
+            },{
+                "test": '颜色切换',
+                "href": 'js-learn/颜色切换.html'
+            },{
+                "test": '展示列表',
+                "href": 'js-learn/showlist/showList.html'
+            },{
+                "test": '品牌列表-jq',
+                "href": 'jq-learn/品牌列表/index.html'
+            },{
+                "test": '选项卡-jq',
+                "href": 'jq-learn/选项卡.html'
+            }];
+            window.tagCloud.start(taglist, 'tagCloud');
+        };
+    </script>
 </head>
 
 <body>
-    <ul>
-        <li><a href="js-learn">js-learn</a></li>
-        <li><a href="jq-learn">jq-learn</a></li>
-    </ul>
+    <div id="tagCloud"></div>
 </body>
 
 </html>
