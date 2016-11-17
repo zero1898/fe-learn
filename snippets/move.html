@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #bg1 {
+            width: 1px;
+            height: 200px;
+            background: black;
+            position: absolute;
+            left: 500px;
+            top: 0;
+        }
+
+        #div2 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #bg2 {
+            width: 1px;
+            height: 200px;
+            background: black;
+            position: absolute;
+            left: 500px;
+            top: 0;
+        }
+    </style>
+    <script src="./startMove.js" charset="utf-8"></script>
+    <script>
+        window.onload = function() {
+            var start1 = document.getElementById('input1');
+            var targ1 = document.getElementById('div1');
+            start1.onclick = function() {
+                window.startMove.ease(targ1, {
+                    "left": 500,
+                    "top": 100,
+                    "opacity": 10
+                }, function() {
+                    window.startMove.ease(targ1, {
+                        "left": 0,
+                        "top": 0,
+                        "opacity": 100
+                    })
+                });
+            };
+
+            var start2 = document.getElementById('input2');
+            var targ2 = document.getElementById('div2');
+            start2.onclick = function() {
+                window.startMove.elastic(targ2, {
+                    "left": 500,
+                    "top": 100,
+                    "opacity": 10
+                }, function() {
+                    window.startMove.elastic(targ2, {
+                        "left": 0,
+                        "top": 0,
+                        "opacity": 100
+                    });
+                });
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <input type="button" value="缓冲运动" id="input1">
+    <div style="height:200px;border:1px solid #ccc;position:relative;">
+        <div id="div1"></div>
+        <div id="bg1"></div>
+    </div>
+    <input type="button" value="弹性运动" id="input2">
+    <div style="height:200px;border:1px solid #ccc;position:relative;">
+        <div id="div2"></div>
+        <div id="bg2"></div>
+    </div>
+</body>
+
+</html>
