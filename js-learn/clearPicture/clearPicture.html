@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>清除图片表面遮盖</title>
+    <style media="screen">
+        body{
+            text-align: center;
+        }
+        img {
+            display: block;
+            margin: 30px auto 0;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var x=y=30;
+            var oImg = document.getElementsByTagName('img');
+            var imgH = oImg[0].offsetHeight;
+            var imgW = oImg[0].offsetWidth;
+            var imgX = oImg[0].offsetLeft;
+            var imgY = oImg[0].offsetTop;
+
+            var iH = imgH/x;
+            var iW = imgW/y;
+
+            var oDiv = document.createElement('div');
+            oDiv.style.height = imgH+'px';
+            oDiv.style.width = imgW+'px';
+            oDiv.style.position = 'absolute';
+            oDiv.style.left = imgX+'px';
+            oDiv.style.top = imgY+'px';
+            oDiv.style.cursor = 'url(img/point.png) 10 10, auto';
+            for(var i=0; i<x*y; i++){
+                var odiv = document.createElement('div');
+                odiv.style.height = iH+'px';
+                odiv.style.width = iW+'px';
+                odiv.style.backgroundColor = '#ddd';
+                odiv.style.float = 'left';
+                oDiv.appendChild(odiv);
+            }
+            document.body.appendChild(oDiv);
+            oDiv.onmouseover = function(event){
+                var ev = event || window.event;
+                var ta = ev.target || ev.srcElement;
+                ta.style.opacity = '0';
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <p>想看图片吗，滑动鼠标吧</p>
+    <img src="img/pic.jpg" alt="" />
+</body>
+
+</html>
