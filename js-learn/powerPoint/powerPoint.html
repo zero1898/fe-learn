@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>幻灯片效果</title>
+    <style media="screen">
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        body {
+            background: #000;
+            text-align: center;
+            font: 12px/20px Arial;
+        }
+
+        #box {
+            position: relative;
+            width: 492px;
+            height: 172px;
+            background: #fff;
+            border-radius: 5px;
+            border: 8px solid #fff;
+            margin: 10px auto;
+        }
+
+        #box .list {
+            position: relative;
+            width: 490px;
+            height: 170px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+        }
+
+        #box .list li {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 490px;
+            height: 170px;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+        #box .list li.current {
+            opacity: 1;
+            filter: alpha(opacity=100);
+        }
+
+        #box .count {
+            position: absolute;
+            right: 0;
+            bottom: 5px;
+        }
+
+        #box .count li {
+            float: left;
+            width: 20px;
+            height: 20px;
+            #color: #fff;
+            cursor: pointer;
+            margin-right: 5px;
+            background: #f90;
+            opacity: 0.7;
+            filter: alpha(opacity=70);
+            border-radius: 50%;
+        }
+
+        #box .count li.current {
+            color: #fff;
+            opacity: 1;
+            filter: alpha(opacity: 100);
+            font-weight: bold;
+            background: #f60;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="循环播放">
+    <input type="button" value="顺序倒序">
+    <div id="box">
+        <ul class="list">
+            <li class="current"><img src="public/img/powerPoint/01.jpg" alt=""></li>
+            <li><img src="img/powerPoint/02.jpg" alt=""></li>
+            <li><img src="img/powerPoint/03.jpg" alt=""></li>
+            <li><img src="img/powerPoint/04.jpg" alt=""></li>
+            <li><img src="img/powerPoint/05.jpg" alt=""></li>
+        </ul>
+        <ul class="count">
+            <li class="current">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+
+    <script>
+        var oBox = document.getElementById('box');
+        var aBtn = document.getElementsByTagName('input');
+        var aUl = oBox.getElementsByTagName('ul');
+        var aList = aUl[0].getElementsByTagName('li');
+        var aCount = aUl[1].getElementsByTagName('li');
+        var timer = play = null;
+        var index = 0;
+        var bLoop = true;
+        var onOff = true;
+
+        // 使用那种模式播放图片
+        aBtn[0].onclick = function(){
+            bLoop = true;
+        };
+        aBtn[1].onclick = function(){
+            bLoop = false;
+        };
+
+        // 划过鼠标改变图片
+        for (var i = 0; i < aCount.length; i++) {
+            aCount[i].index = i;
+            aCount[i].onmouseover = function() {
+                index = this.index;
+                show(index);
+            };
+        }
+
+        // 鼠标滑过图片停止
+        oBox.onmouseover = function() {
+            clearInterval(play);
+        };
+        // 鼠标离开图片继续
+        oBox.onmouseout = function() {
+            autoPlay();
+        };
+        // 自动播放
+        function autoPlay() {
+            play = setInterval(function() {
+                if (bLoop) {
+                    index++;
+                    if (index >= aList.length) {
+                        index = 0;
+                    }
+                } else {
+                    if (index >= aList.length-1) {
+                        index = aList.length - 1;
+                        onOff = false;
+                    } else if (index <= 0) {
+                        index = 0;
+                        onOff = true;
+                    }
+                    if (onOff) {
+                        index++;
+                    } else {
+                        index--;
+                    }
+                }
+                show(index);
+            }, 2000);
+        }
+        autoPlay();
+
+        // 图片切换，淡入淡出效果
+        function show(index) {
+            var alpha = 0;
+            for (var i = 0; i < aCount.length; i++) {
+                aCount[i].className = '';
+            }
+            aCount[index].className = 'current';
+            clearInterval(timer);
+
+            for (var i = 0; i < aList.length; i++) {
+                aList[i].style.opacity = 0;
+                aList[i].style.filter = 'alpha(opacity=0)'
+            }
+
+            timer = setInterval(function() {
+                alpha += 2;
+                if (alpha > 100) {
+                    alpha = 100;
+                }
+                aList[index].style.opacity = alpha / 100;
+                aList[index].style.filter = 'alpha(opacity=' + alpha + ')';
+                if (alpha === 100) {
+                    clearInterval(timer);
+                }
+            }, 20);
+        }
+    </script>
+</body>
+
+</html>
