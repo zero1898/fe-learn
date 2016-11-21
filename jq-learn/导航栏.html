@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>导航栏</title>
+    <style media="screen">
+        body,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 14px;
+            background: #fff;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        a {
+            color: #00007f;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #bd0a01;
+        }
+
+        .box {
+            width: 150px;
+            margin: 20px auto 0;
+        }
+
+        .menu {
+            border: 1px solid #c4d5df;
+            border-top-width: 0;
+        }
+
+        .menu .level1>a,
+        .menu .level2 a {
+            display: block;
+            height: 28px;
+            line-height: 28px;
+            text-indent: 14px;
+        }
+
+        .menu .level1>a {
+            border-top: 1px solid #c4d5df;
+            font-weight: bold;
+            background: #ebf3f8;
+        }
+
+        .menu .level1>a.current {
+            background: #b1d7ef;
+        }
+
+        .menu .level2 a {
+            background: #fff;
+        }
+
+        .menu .leve2 a:hover {
+            color: #f60;
+        }
+
+        .menu .level2 {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul class="menu">
+            <li class="level1">
+                <a href="javascript:;">衬衫</a>
+                <ul class="level2">
+                    <li><a href="#none">短袖衬衫</a></li>
+                    <li><a href="#none">长袖衬衫</a></li>
+                    <li><a href="#none">短袖衬衫</a></li>
+                    <li><a href="#none">长袖衬衫</a></li>
+                </ul>
+            </li>
+            <li class="level1">
+                <a href="javascript:;">毛衣</a>
+                <ul class="level2">
+                    <li><a href="#none">短袖毛衣</a></li>
+                    <li><a href="#none">长袖毛衣</a></li>
+                    <li><a href="#none">短袖毛衣</a></li>
+                    <li><a href="#none">长袖毛衣</a></li>
+                </ul>
+            </li>
+            <li class="level1">
+                <a href="javascript:;">外套</a>
+                <ul class="level2">
+                    <li><a href="#none">短袖外套</a></li>
+                    <li><a href="#none">长袖外套</a></li>
+                    <li><a href="#none">短袖外套</a></li>
+                    <li><a href="#none">长袖外套</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.js" charset="utf-8"></script>
+    <script>
+        $(document).ready(function() {
+            $('.level1>a').on('click', function() {
+                $(this).toggleClass('current')
+                    .next().toggle()
+                    .parent().siblings().children('a').removeClass('current')
+                    .next().hide();
+                return false;
+            });
+        });
+    </script>
+</body>
+
+</html>
